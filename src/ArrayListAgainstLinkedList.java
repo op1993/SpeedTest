@@ -16,98 +16,95 @@ public class ArrayListAgainstLinkedList {
 
     ArrayList arrayList = new ArrayList();
     LinkedList linkedList = new LinkedList();
-    long howMuchElements = 100000;
+    long howMuchElements = 30000;
 
     public static void main(String[] args) {
         ArrayListAgainstLinkedList speedTest = new ArrayListAgainstLinkedList();
-//        speedTest.addToArrayList();
-//        speedTest.AddToLinkedList();
-//
-        speedTest.findElementArrayList();
-        speedTest.findElementLinkedList();
+        speedTest.addToArrayList();
+        speedTest.addToLinkedList();
+        speedTest.getElementArrayList();
+        speedTest.getElementLinkedList();
         speedTest.removeElementArrayList();
         speedTest.removeElementLinkedList();
         speedTest.info();
     }
 
     public void addToArrayList() {
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         for (long i = 0; i < howMuchElements; i++) {
             arrayList.add(i);
 //            System.out.println(i);
         }
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         durationArrayListAddElement = endTime - startTime;
 //        System.out.println("ArrayList list finished in :  " + durationArrayListAddElement + "nano sec");
     }
 
-    public void AddToLinkedList() {
-        long startTime = System.nanoTime();
+    public void addToLinkedList() {
+        long startTime = System.currentTimeMillis();
         for (long i = 0; i < howMuchElements; i++) {
             linkedList.add(i);
 //            System.out.println(i);
         }
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         durationLinkedListAddElement = endTime - startTime;
 //        System.out.println("Linked list finished in :  " + durationLinkedListAddElement + "nano sec");
     }
 
-    public void findElementArrayList() {
-        System.out.println("Creating arrayList");
+    public void getElementArrayList() {
+//        System.out.println("Creating arrayList");
         addToArrayList();
-        System.out.println("Start searching");
-        long startTime = System.nanoTime();
+//        System.out.println("Start searching");
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < howMuchElements; i++) {
             arrayList.get(i);
         }
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         durationFindElementsArrayList = endTime - startTime;
 //        System.out.println("ArrayList get:  " + durationFindElementsArrayList);
     }
 
-    public void findElementLinkedList() {
-        System.out.println("Creating linkedList");
-        AddToLinkedList();
-        System.out.println("Start searching");
-        long startTime = System.nanoTime();
+    public void getElementLinkedList() {
+//        System.out.println("Creating linkedList");
+        addToLinkedList();
+//        System.out.println("Start searching");
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < howMuchElements; i++) {
             linkedList.get(i);
         }
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         durationFindElementsLinkedList = endTime - startTime;
 //        System.out.println("Linked get:  " + durationFindElementsLinkedList);
     }
 
     public void removeElementArrayList() {
-
         addToArrayList();
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         for (long i = howMuchElements; i >= 0; i--) {
             arrayList.remove(i);
         }
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         durationForRemoveArrayList = endTime - startTime;
-        System.out.println("ArrayList remove:  " + durationForRemoveArrayList);
+//        System.out.println("ArrayList remove:  " + durationForRemoveArrayList);
     }
 
     public void removeElementLinkedList() {
-
-        AddToLinkedList();
-        long startTime = System.nanoTime();
+        addToLinkedList();
+        long startTime = System.currentTimeMillis();
         for (long i = howMuchElements; i >= 0; i--) {
             linkedList.remove(i);
         }
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         durationForRemoveLinkedList = endTime - startTime;
-        System.out.println("Linked remove:  " + durationForRemoveLinkedList);
+//        System.out.println("Linked remove:  " + durationForRemoveLinkedList);
     }
 
     public void info() {
-        System.out.println("Add element. Linked list finished in :  " + durationLinkedListAddElement);
-        System.out.println("Add element. ArrayList list finished in : " + durationArrayListAddElement);
-        System.out.println("Find element. ArrayList: " + durationFindElementsArrayList);
-        System.out.println("Find element. LinkedList: " + durationFindElementsLinkedList);
-        System.out.println("Remove element. ArrayList :" + durationForRemoveArrayList);
-        System.out.println("Remove element. Linked list :" + durationForRemoveLinkedList);
+        System.out.println("Add element. Linked list finished in :  " + durationLinkedListAddElement  + " millisecond");
+        System.out.println("Add element. ArrayList list finished in : " + durationArrayListAddElement + " millisecond \n");
+        System.out.println("Find element. ArrayList: " + durationFindElementsArrayList  + " millisecond");
+        System.out.println("Find element. LinkedList: " + durationFindElementsLinkedList  + " millisecond \n");
+        System.out.println("Remove element. ArrayList :" + durationForRemoveArrayList  + " millisecond ");
+        System.out.println("Remove element. Linked list :" + durationForRemoveLinkedList  + " millisecond \n");
     }
 }
